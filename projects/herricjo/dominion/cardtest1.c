@@ -35,24 +35,40 @@
 void testAdventurer() {
   struct gameState gS1;
   int numCards;
+  int numCards2;
   int ret;
   int ret1;
   int ret2;
   char name[MAX_STRING_LENGTH];
   int hand[10] = {adventurer, smithy, great_hall, outpost, council_room, feast, gardens, mine, remodel, village};
-
+  size_t numElements;
+  int i;
+  int total;
+  int total2;
+  
   initializeGame(2, hand, 1, &gS1);
 
   gS1.handCount[0] = 3;
+  gS1.handCount[1] = 3;
   gS1.hand[0][0] = adventurer;
+  numElements = sizeof(gS1.supplyCount)/sizeof(gS1.supplyCount[0]);
+
+  for(i=0; i<numElements; i++) {
+    total += gS1.supplyCount[i];
+  }
 
   numCards = gS1.handCount[0];
+  numCards2 = gS1.handCount[1];
 
   //printHand(0, &gS1);
 
   playCard(0, 1, 0, 0, &gS1);
 
   //printHand(0, &gS1);
+
+  for(i=0; i<numElements; i++) {
+    total2 += gS1.supplyCount[i];
+  }
 
   cardNumToName(gS1.hand[0][4], name);
 
@@ -69,6 +85,16 @@ void testAdventurer() {
     printf("adventurer card: PASS when test containing does hand contain new treasure played as adventurer\n");
   else
     printf("adventurer card: FAIL when test containing does hand contain new treasure played as adventurer\n");
+
+  if(gS1.handCount[1] == numCards2)
+    printf("adventurer card: PASS when test containing is handcount same for p2 as adventurer\n");
+  else
+    printf("adventurer card: FAIL when test containing is handcount same for p2 as adventurer\n");   
+
+  if(total == total2)
+    printf("adventurer card: PASS when test containing is victory piles same as adventurer\n");
+  else
+    printf("adventurer card: FAIL when test containing is victory piles same as adventurer\n"); 
 }
 
 int main() {
