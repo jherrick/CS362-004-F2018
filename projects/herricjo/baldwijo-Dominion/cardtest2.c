@@ -53,9 +53,9 @@ void testSmithy() {
   }
 
   if(gS1.handCount[0] == numCards+3)
-    printf("smithy card: PASS when test containing is handcount +2 played as smithy\n");
+    printf("smithy card: PASS when test containing is handcount +3 played as smithy\n");
   else
-    printf("smithy card: FAIL when test containing is handcount +2 played as smithy\n");
+    printf("smithy card: FAIL when test containing is handcount +3 played as smithy\n");
 
   if(gS1.handCount[1] == numCards2)
     printf("smithy card: PASS when test containing is handcount same for p2 as smithy\n");
